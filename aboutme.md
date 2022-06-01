@@ -1,16 +1,13 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: About Us
+subtitle: Benjamin Chase and Rafael Charris
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+# Benjamin Chase
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+Ben earned a Bachelor's degree in Physics and Economics, and a Master's degree in Behavioral and Computational Economics. He is a Strategy and Insights Analyst at Kofax, a software company headquartered in Irvine. He is passionate about machine learning, causal inference, and statistics, and enjoys teaching as much as learning. He contributes to the UnBiased Data Blog because it provides an opportunity to learn new things and excite others about cool stuff.
 
-What else do you need?
+# Rafael Charris
 
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+Rafael needs to write some information here.
