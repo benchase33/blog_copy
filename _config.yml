@@ -6,22 +6,21 @@
 # --- Required options --- #
 
 # Name of website
-title: My Website
+title: UnBiased Data Blog
 
 # Your name to show in the footer
-author: Some Person
+author: Benjamin Chase & Rafael Charris
 
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "aboutme"
+  About Us: "aboutme"
   Other Blogs:
     - Data Colada: "https://datacolada.org"
     - Gelman's Blog: "https://statmodeling.stat.columbia.edu/"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-
+   Connect With Us:
+    - Benjamin Chase: "www.linkedin.com/in/benjaminchase33/"
+   
 # --- Logo --- #
 
 # Image to show in the navigation bar - works best with a square image
