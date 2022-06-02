@@ -10,4 +10,4 @@ Ben earned a Bachelor's degree in Physics and Economics, and a Master's degree i
 
 # Rafael Charris
 
-Rafael needs to write some information here.
+Rafael needs to write some information here soon.
