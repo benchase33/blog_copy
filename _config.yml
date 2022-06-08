@@ -5,6 +5,9 @@
 
 # --- Required options --- #
 
+# Google Analytics
+google_analytics: G-DTHZKX63PW
+
 # Name of website
 title: UnBiased Data Blog
 
