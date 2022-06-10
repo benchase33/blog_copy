@@ -20,9 +20,8 @@ because an event (surgery) causes something to happen (you live a longer
 life). Causal relationships can be represented by a *directed acyclic
 graph*, or DAG[1] for short. Check out the sample DAG below[2]:
 
-<p align = "center" style="font-size:10px";>
-<img height = 120px width = auto src="./assets/img/dag_1.png">
-<br></br>DAG showing that undergoing surgery has a direct causal effect on lifespan
+<p align="center">
+  <img width="460" height="300" src="./assets/img/dag_1.png">
 </p>
 
 The arrow going from surgery to lifespan says, in DAG language, that
