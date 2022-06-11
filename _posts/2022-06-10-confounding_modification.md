@@ -304,16 +304,16 @@ Confounding and effect modification are two important and distinct
 features that should be understood when interpreting reported effects
 and doing your own research.
 
-**Note**: All source code written for this post is available in a Python notebook here: https://colab.research.google.com/drive/1Aln4jJfUUQXvK8Fnp75aAMv-utTYoYKp?usp=sharing
+**Note**: All source code written for this post is available in a Python notebook here: <https://colab.research.google.com/drive/1Aln4jJfUUQXvK8Fnp75aAMv-utTYoYKp?usp=sharing>
 
-[^1]: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html.
+[^1]: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: <https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html>
 
-[^2]: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  https://github.com/ijmbarr/causalgraphicalmodels.
+[^2]: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels>
 
-[^3]: Check out this book for a Bayesian approach to linear and logistic regression models: https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ.
+[^3]: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ>
 
-[^4]: Check out this book for a deep dive into causal inference techniques: https://mixtape.scunning.com
+[^4]: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com>
 
-[^5]: Another resource for causal inference techniques: https://theeffectbook.net
+[^5]: Another resource for causal inference techniques: <https://theeffectbook.net>
 
-[^6]: A more mathematical resource for causal inference techniques: https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/
+[^6]: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/>
