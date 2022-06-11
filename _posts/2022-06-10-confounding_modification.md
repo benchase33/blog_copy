@@ -144,7 +144,7 @@ We would estimate a significant and negative causal effect of surgery on
 lifespan, even though none exists in the data! Remember, we created our
 data such that **only** weight impacts lifespan. Failing to include
 weight as a predictor here would incorrectly lead us to the conclusion
-that undergoign surgery reduces an individual’s lifespan. Now, let’s see
+that undergoing surgery reduces an individual’s lifespan. Now, let’s see
 what changes if we properly handle the confounder, weight, and include
 it as a predictor in the linear regression model:
 
