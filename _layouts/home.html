@@ -84,7 +84,9 @@ layout: page
       {% endfor %}
     </div>
     {% endif %}
-    {% include readtime.html %}
+    {% if page.author %}
+      <span class="post-meta">Written by <a href="{{ page.author.web }}">{{ page.author.name }}</a></span>
+    {% endif %}
    </article>
   {% endfor %}
 </div>
