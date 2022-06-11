@@ -7,7 +7,7 @@ layout: base
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
-
+      {% include reading-time.html %}
       {% assign author = site.data.authors[page.author] %}
 
       {% if author %}
@@ -16,7 +16,7 @@ layout: base
               Written by <a href="{{ author.web }}">{{ author.name }}</a>
           </span>
       {% endif %}
-      
+
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
         {% assign gh_user =  gh_split[0]  %}
