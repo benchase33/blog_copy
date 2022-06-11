@@ -12,8 +12,6 @@ tags:
 title: Confounding Versus Effect Modification
 ---
 
-## What is a Causal Effect?
-
 People often want to know if an event causes something to happen. For
 instance, you might want to know if undergoing surgery will cause you to
 live a longer life. This is typically referred to as a *causal effect*
