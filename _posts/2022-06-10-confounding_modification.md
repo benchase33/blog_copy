@@ -44,7 +44,7 @@ The existence of causal effects is often the focus of research. For
 instance, scientists likely wanted to know whether or not the COVID-19
 vaccine had a causal effect (direct or indirect) on patient outcomes.
 Questions like these are typically answered using a *outcome regression
-model*[3] in which an outcome (e.g., lifespan) is modeled as a function
+model*[^3] in which an outcome (e.g., lifespan) is modeled as a function
 of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects
 estimated by regression models are heavily dependent on two things:
 
