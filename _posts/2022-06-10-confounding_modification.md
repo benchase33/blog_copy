@@ -149,7 +149,7 @@ what changes if we properly handle the confounder, weight, and include
 it as a predictor in the linear regression model:
 
 <p align="center">
-  <img height="150" src="https://benchase33.github.io/testing.github.io/assets/img/noconfounding.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/img/noconfounding.png">
 </p>
 
 Now that we properly handled the confounder, we do not estimate a
@@ -234,7 +234,7 @@ regression model with surgery as the only predictor. Let’s see what
 happens:
 
 <p align="center">
-  <img height="150" src="https://benchase33.github.io/testing.github.io/assets/img/effectmod.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/img/effectmod.png">
 </p>
 
 We would conclude that surgery does not have a significant causal effect
@@ -247,7 +247,7 @@ happens when we restrict our model to data for males; this is analogous
 to forming a more precise question:
 
 <p align="center">
-  <img height="150" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodmale.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodmale.png">
 </p>
 
 With a more precisely specified population (only males), we find a
@@ -255,7 +255,7 @@ significant and positive causal effect of surgery on lifespan. We can
 see the same for a population with all females:
 
 <p align="center">
-  <img height="150" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodfemale.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodfemale.png">
 </p>
 
 for whom surgery has a significant and negative causal effect on
@@ -265,7 +265,7 @@ as a predictor in our outcome regression model. Let’s see what happens
 if we do that:
 
 <p align="center">
-  <img height="150" src="https://benchase33.github.io/testing.github.io/assets/img/effectmodbad.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/img/effectmodbad.png">
 </p>
 
 Once again, we do not estimate a significant causal effect of surgery on
