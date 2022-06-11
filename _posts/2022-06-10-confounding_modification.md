@@ -21,7 +21,7 @@ life). Causal relationships can be represented by a *directed acyclic
 graph*, or DAG[1] for short. Check out the sample DAG below[2]:
 
 <p align="center">
-  <img height="300" src="https://benchase33.github.io/testing.github.io/assets/img/dag_1.png">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/dag_1.png">
 </p>
 
 The arrow going from surgery to lifespan says, in DAG language, that
@@ -30,10 +30,8 @@ lifespan. The DAG does not say whether the effect is positive or
 negative, only that some causal effect exists. Causal effects can also
 be *indirect*. Take a look at an alternative DAG below:
 
-<p align = "center" style="font-size:10px";>
-<img height = 200px width = auto src="./assets/img/dag_2.png">
-<br></br>DAG showing that undergoing surgery has an indirect causal effect on lifespan which is mediated by heart health
-</p>
+<p align = "center">
+<img height = 200px width = auto src="https://benchase33.github.io/testing.github.io/assets/img/dag_2.png">
 
 This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan.
@@ -75,9 +73,8 @@ In short, confounders almost always exist in data, and models are
 plagued with confounding when confounders are not properly handled. Take
 a look at the DAG below to see an example of confounding:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/dag_3.png">
-<br></br>DAG showing that weight is a common cause of surgery on lifespan, and therefore a confounder when estimating the causal effect of surgery on lifespan
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/dag_3.png">
 </p>
 
 There are three features in this DAG which confirm the presence of a
@@ -138,9 +135,8 @@ surgery has a causal effect on lifespan. Let’s see what happens if we do
 not properly handle the confounder, weight, and only include surgery as
 a predictor in the model:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/confounding.png">
-<br></br>Estimates from a linear regression model with confounding which suggest a biased causal effect of undergoing surgery on lifespan
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/confounding.png">
 </p>
 
 We would estimate a significant and negative causal effect of surgery on
@@ -151,9 +147,8 @@ that undergoign surgery reduces an individual’s lifespan. Now, let’s see
 what changes if we properly handle the confounder, weight, and include
 it as a predictor in the linear regression model:
 
-<p align = "center" style="font-size:10px";>
-<img height = 150px width = auto src="./assets/img/noconfounding.png">
-<br></br>Estimates from a linear regression model without confounding, which correctly estimates the causal effects of weight and surgery on lifespan
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/noconfounding.png">
 </p>
 
 Now that we properly handled the confounder, we do not estimate a
@@ -175,9 +170,8 @@ on biological sex*. I find the traditional DAG design for effect
 modification a bit unintuitive, so check out the DAG below for a
 (hopefully) clearer diagram:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/dag_4.png">
-<br></br>DAG showing that biological sex is a direct effect modifier
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/dag_4.png">
 </p>
 
 Similar to direct and indirect causal effects, there can be direct and
@@ -186,9 +180,8 @@ sex might have a causal effect on testosterone, which directly modifies
 the effect of surgery. In the DAG below, biological sex is an *indirect
 effect modifier* while testosterone is a *direct effect modifier*:
 
-<p align = "center" style="font-size:10px";>
-<img height = 190px width = auto src="./assets/img/dag_5.png">
-<br></br>DAG showing that biological sex is an indirect effect modifier mediated by testosterone
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/dag_5.png">
 </p>
 
 Unlike confounding, effect modification is not a boogeyman that
@@ -239,9 +232,8 @@ because surgery was *randomly assigned*, so we can construct an outcome
 regression model with surgery as the only predictor. Let’s see what
 happens:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/effectmod.png">
-<br></br>Estimates from a linear regression model using data for the entire population
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/effectmod.png">
 </p>
 
 We would conclude that surgery does not have a significant causal effect
@@ -253,18 +245,16 @@ our imprecise question, the causal effects canceled out! Let’s see what
 happens when we restrict our model to data for males; this is analogous
 to forming a more precise question:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/noeffectmodmale.png">
-<br></br>Estimates from a linear regression model using data for the male population which masks the causal effects of surgery on lifespan
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodmale.png">
 </p>
 
 With a more precisely specified population (only males), we find a
 significant and positive causal effect of surgery on lifespan. We can
 see the same for a population with all females:
 
-<p align = "center" style="font-size:10px";>
-<img height = 130px width = auto src="./assets/img/noeffectmodfemale.png">
-<br></br>Estimates from a linear regression model using data for the female population
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/noeffectmodfemale.png">
 </p>
 
 for whom surgery has a significant and negative causal effect on
@@ -273,9 +263,8 @@ controlled for in the same way as a confounder, such as by including it
 as a predictor in our outcome regression model. Let’s see what happens
 if we do that:
 
-<p align = "center" style="font-size:10px";>
-<img height = 150px width = auto src="./assets/img/effectmodbad.png">
-<br></br>Estimates from a linear regression model with an effect modifier treated like a confounder
+<p align="center">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/effectmodbad.png">
 </p>
 
 Once again, we do not estimate a significant causal effect of surgery on
