@@ -31,7 +31,8 @@ negative, only that some causal effect exists. Causal effects can also
 be *indirect*. Take a look at an alternative DAG below:
 
 <p align = "center">
-<img height = 200px width = auto src="https://benchase33.github.io/testing.github.io/assets/img/dag_2.png">
+<img height = 300px width = auto src="https://benchase33.github.io/testing.github.io/assets/img/dag_2.png">
+</p>
 
 This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan.
@@ -181,7 +182,7 @@ the effect of surgery. In the DAG below, biological sex is an *indirect
 effect modifier* while testosterone is a *direct effect modifier*:
 
 <p align="center">
-  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/img/dag_5.png">
+  <img height="300" src="https://benchase33.github.io/testing.github.io/assets/img/dag_5.png">
 </p>
 
 Unlike confounding, effect modification is not a boogeyman that
