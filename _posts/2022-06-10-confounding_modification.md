@@ -10,6 +10,7 @@ tags:
 - causal inference
 - econometrics
 title: Confounding Versus Effect Modification
+readtime: True
 ---
 
 People often want to know if an event causes something to happen. For

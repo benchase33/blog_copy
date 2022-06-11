@@ -39,13 +39,9 @@
 
           {% if include.type == "post" %}
             <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>
-            {% assign author = site.data.authors[page.author] %}
 
-            {% if author %}
-                <span>
-                    <!-- Personal Info. -->
-                    Written by <a href="{{ author.web }}">{{ author.name }}</a>
-                </span>
+            {% if page.author %}
+                <span class="post-meta">Written by <a href="{{ page.author.web }}">{{ page.author.name }}</a></span>
             {% endif %}
 
             {% if page.last-updated %}
