@@ -22,7 +22,7 @@ life). Causal relationships can be represented by a *directed acyclic
 graph*, or DAG[1] for short. Check out the sample DAG below[2]:
 
 <p align="center">
-  <img width="460" height="300" src="assets/img/dag_1.png">
+  <img height="300" src="https://benchase33.github.io/testing.github.io/assets/img/dag_1.png">
 </p>
 
 The arrow going from surgery to lifespan says, in DAG language, that
