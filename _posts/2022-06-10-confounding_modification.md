@@ -5,6 +5,7 @@ output:
     preserve_yaml: true
     variant: markdown_github
 subtitle: What’s the Difference and Why Does it Matter?
+author: Benjamin Chase
 tags:
 - causal inference
 - econometrics
