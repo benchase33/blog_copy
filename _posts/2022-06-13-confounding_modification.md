@@ -11,6 +11,7 @@ tags:
 - econometrics
 title: Confounding Versus Effect Modification
 readtime: True
+last-updated: 6/13/2022
 ---
 
 People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG[^1] for short. Check out the sample DAG below[^2]:
