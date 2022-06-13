@@ -17,13 +17,13 @@ last-updated: 6/13/2022
 People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG[^1] for short. Check out the sample DAG below[^2]:
 
 <p align="center">
-  <conf_effmod_img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_1.png">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_1.png">
 </p>
 
 The arrow going from surgery to lifespan says, in DAG language, that undergoing surgery has a *direct* causal effect on an individual’s lifespan. The DAG does not say whether the effect is positive or negative, only that some causal effect exists. Causal effects can also be *indirect*. Take a look at the alternative DAG below:
 
 <p align = "center">
-<conf_effmod_img height = 300px width = auto src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_2.png">
+<img height = 300px width = auto src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_2.png">
 </p>
 
 This DAG says that undergoing surgery has a direct causal effect on
@@ -51,7 +51,7 @@ In short, confounders almost always exist in data, and models are
 plagued with confounding when confounders are not properly handled. Take a look at the DAG below to see an example of a confounder:
 
 <p align="center">
-  <conf_effmod_img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png">
 </p>
 
 There are three features in this DAG which confirm the presence of a confounder:
@@ -92,13 +92,13 @@ lifespan = 100 - weight/10
 In our sample data, weight has a direct causal effect on both surgery and lifespan, but surgery does not have a causal effect on weight. We could build a linear regression model to test whether or not undergoing surgery has a causal effect on lifespan. Let’s see what happens if we do not properly handle the confounder, weight, and only include surgery as a predictor in the model:
 
 <p align="center">
-  <conf_effmod_img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/confounding.png">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/confounding.png">
 </p>
 
 We would estimate a significant and negative causal effect of surgery on lifespan, even though none exists in the data! Remember, we created ourdata such that **only weight** impacts lifespan. Failing to include weight as a predictor here would incorrectly lead us to the conclusion that undergoing surgery reduces an individual’s lifespan. Now, let’s see what changes if we properly handle the confounder, weight, and include it as a predictor in the linear regression model:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
 </p>
 
 Now that we properly handled the confounder, we do not estimate a
@@ -109,13 +109,13 @@ significant causal effect of surgery on lifespan, and correctly detect that weig
 While I think of confounding as a problematic characteristic of a model, I think of effect modification as a neutral characteristic of data. Models do not have effect modification, but real-world processes do. For instance, it is possible that undergoing surgery increases an individual’s lifespan for males but not for females. This is an example of effect modification because the surgery’s causal on lifespan *depends on biological sex*. I find the traditional DAG design for effect modification a bit unintuitive, so check out the DAG below for a (hopefully) clearer diagram:
 
 <p align="center">
-  <conf_effmod_img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_4.png">
+  <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_4.png">
 </p>
 
 Similar to direct and indirect causal effects, there can be direct and indirect effect modification. For instance, an individual’s biological sex might have a causal effect on testosterone, which directly modifies the effect of surgery. In the DAG below, biological sex is an *indirect effect modifier* while testosterone is a *direct effect modifier*:
 
 <p align="center">
-  <conf_effmod_img height="300" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_5.png">
+  <img height="300" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_5.png">
 </p>
 
 Unlike confounding, effect modification is not a boogeyman that
@@ -154,33 +154,33 @@ lifespan = 75 + 25*surgery*male - 25*surgery*(1 - male)
 Our original question was to find out whether or not undergoing surgery will increase an individual’s lifespan. There are no confounders here because surgery was *randomly assigned*, so we can construct an outcome regression model with surgery as the only predictor. Let’s see what happens:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmod.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmod.png">
 </p>
 
 We would conclude that surgery does not have a significant causal effect on lifespan in the *entire population*. On average, this is true. However, this is not true for any *individual* because the surgery has equal and opposite effects for men and women, whom are evenly distributed in the population. Due to effect modification paired with our imprecise question, the causal effects canceled out! Let’s see what happens when we restrict our model to data for males; this is analogous to forming a more precise question:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
 </p>
 
 With a more precisely specified population (only males), we find a
 significant and positive causal effect of surgery on lifespan. We can see the same for a population with all females:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodfemale.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodfemale.png">
 </p>
 
 for whom surgery has a significant and negative causal effect on
 lifespan. To be clear, sex is **not** a confounder. It **should not** be controlled for in the same way as a confounder, such as by including it as a predictor in our outcome regression model. Let’s see what happens if we do that:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
 </p>
 
 Once again, we do not estimate a significant causal effect of surgery on lifespan, although it is significant within the respective male and female populations. We estimate a significant causal effect of biological sex on lifespan, however, this is **not** true if nobody in the population undergoes surgery. We can also solve this problem by embedding a more precise question in our model via an *interaction term* between biological sex and surgery. We can now estimate the causal effect of surgery separately for males and females in the same model. Let's see what happens:
 
 <p align="center">
-  <conf_effmod_img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
+  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
 </p>
 
 We estimate the same causal effects for males and females that we found when we ran one model for each half of the population. The estimated effect for females is the coefficient on surgery, and the estimated effect for males is the coefficient on surgery **plus** the coefficient on the interaction term. Although both methods require a more precise question, they each have pros and cons depending on your specific project (e.g., sample size and covariate levels).
