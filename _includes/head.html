@@ -2,6 +2,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
+    <!-- Twitter cards -->
+  <meta name="twitter:creator" content="@{{ page.author }}">
+  <meta name="twitter:title"   content="{{ page.title }}">
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+  <!-- end of Twitter cards -->
+
   {% if site.google_analytics and jekyll.environment == 'production' %}
   {% include analytics.html %}
   {% endif %}

@@ -12,6 +12,7 @@ tags:
 title: Confounding Versus Effect Modification
 readtime: True
 last-updated: 6/13/2022
+image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
 People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG[^1] for short. Check out the sample DAG below[^2]:
@@ -183,7 +184,7 @@ Once again, we do not estimate a significant causal effect of surgery on lifespa
   <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
 </p>
 
-We estimate the same causal effects for males and females that we found when we ran one model for each half of the population. The estimated effect for females is the coefficient on surgery, and the estimated effect for males is the coefficient on surgery **plus** the coefficient on the interaction term. Although both methods require a more precise question, they each have pros and cons depending on your specific project (e.g., sample size and covariate levels).
+We estimate the same causal effects for males and females that we found when we ran one model for each half of the population. The estimated effect for females is the coefficient on surgery, and the estimated effect for males is the coefficient on surgery **plus** the coefficient on the interaction term. Although both methods require a more precise question, they each have pros and cons depending on your specific project.
 
 ## Summary
 
