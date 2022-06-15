@@ -31,7 +31,7 @@ This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan. In this DAG, undergoing surgery does not have a direct causal effect on an individual’s lifespan, but an *indirect* causal effect *mediated by heart health*.
 
 The existence of causal effects is often the focus of research. For
-instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression*[^3] in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
+instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression* [^3] in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
 
 1.  Which predictors are used in the model.
 2.  Which data the model learns from.
