@@ -55,11 +55,10 @@ plagued with confounding when confounders are not properly handled. Take a look 
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png">
 </p>
 
-There are three features in this DAG which confirm the presence of a confounder:
+There are two features in this DAG which confirm the presence of a confounder:
 
 1.  There is an arrow going from weight to surgery, which implies an individual’s weight has a direct causal effect on whether they undergo surgery.
 2.  There is an arrow going from weight to lifespan, which implies an individual’s weight has a direct causal effect on their lifespan.
-3.  There is **not** an arrow going from surgery to lifespan, which implies undergoing surgery does **not** have a direct nor indirect causal effect on their lifespan.
 
 Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this[^4] [^5] [^6] (matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
 predictor in the model, we have a model with confounding and a biased estimate of the causal effect.
