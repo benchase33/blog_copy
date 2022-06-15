@@ -76,7 +76,7 @@ We’ll start with some random data that captures individuals’ weights in kilo
 weight = stats.norm.rvs(loc = 100, scale = 20, size = 1_000)
 ```
 
-The code above will create randomly draw 1,000 values from a normal distribution with a mean of 100 and a standard deviation of 20. So, we are creating a normal distribution of observed weight data which should mostly fall between 40 kilograms and 160 kilograms. Next, we’ll create surgery data such that only people who weigh over 100 kilograms receive surgery:
+The code above will randomly draw 1,000 values from a normal distribution with a mean of 100 and a standard deviation of 20. This will create weight data which generally falls between 40 kilograms and 160 kilograms, with a higher concentration of observations around 100 kilograms. Next, we’ll create surgery data such that only people who weigh over 100 kilograms receive surgery:
 
 ``` py
 surgery = weight > 100
@@ -89,13 +89,13 @@ shorter lifespans:
 lifespan = 100 - weight/10
 ```
 
-In our sample data, weight has a direct causal effect on both surgery and lifespan, but surgery does not have a causal effect on weight. We could build a linear regression model to test whether or not undergoing surgery has a causal effect on lifespan. Let’s see what happens if we do not properly handle the confounder, weight, and only include surgery as a predictor in the model:
+In our sample data, weight has a direct causal effect on both surgery and lifespan, but surgery does not have a causal effect on weight. We could build a linear regression model to test whether or not undergoing surgery has a causal effect on lifespan (i.e., outcome regression). Let’s see what happens if we do not properly handle the confounder, weight, and only include surgery as a predictor in the model:
 
 <p align="center">
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/confounding.png">
 </p>
 
-We would estimate a significant and negative causal effect of surgery on lifespan, even though none exists in the data! Remember, we created ourdata such that **only weight** impacts lifespan. Failing to include weight as a predictor here would incorrectly lead us to the conclusion that undergoing surgery reduces an individual’s lifespan. Now, let’s see what changes if we properly handle the confounder, weight, and include it as a predictor in the linear regression model:
+We would estimate a significant and negative causal effect of surgery on lifespan, even though none exists in the data! Remember, we created our data such that **only weight** impacts lifespan. Failing to include weight as a predictor here would incorrectly lead us to the conclusion that undergoing surgery reduces an individual’s lifespan. Now, let’s see what changes if we properly handle the confounder, weight, and include it as a predictor in the linear regression model:
 
 <p align="center">
   <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
@@ -106,7 +106,7 @@ significant causal effect of surgery on lifespan, and correctly detect that weig
 
 ## What is Effect Modification?
 
-While I think of confounding as a problematic characteristic of a model, I think of effect modification as a neutral characteristic of data. Models do not have effect modification, but real-world processes do. For instance, it is possible that undergoing surgery increases an individual’s lifespan for males but not for females. This is an example of effect modification because the surgery’s causal on lifespan *depends on biological sex*. I find the traditional DAG design for effect modification a bit unintuitive, so check out the DAG below for a (hopefully) clearer diagram:
+While I think of confounding as a problematic characteristic of a model, I think of effect modification as a neutral characteristic of data. Models do not have effect modification, but real-world processes do. For instance, it is possible that undergoing surgery increases an individual’s lifespan for males but not for females. This is an example of effect modification because the causal effect of surgery on lifespan for an individual *depends on their biological sex*. I find the traditional DAG design for effect modification a bit unintuitive, so check out the DAG below for a (hopefully) clearer diagram:
 
 <p align="center">
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_4.png">
@@ -133,7 +133,7 @@ population (there is no end to how precise a causal question can be, but we’ll
 
 ### Example of Effect Modification
 
-Once again, let’s look at some sample data. We’ll start with a randomly distributed surgery:
+Once again, let’s look at some sample data. We’ll start with a randomly assigned surgery:
 
 ``` py
 surgery = np.array([random.randint(0, 2) for _ in range(1_000)])
@@ -177,7 +177,7 @@ lifespan. To be clear, sex is **not** a confounder. It **should not** be control
   <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
 </p>
 
-Once again, we do not estimate a significant causal effect of surgery on lifespan, although it is significant within the respective male and female populations. We estimate a significant causal effect of biological sex on lifespan, however, this is **not** true if nobody in the population undergoes surgery. We can also solve this problem by embedding a more precise question in our model via an *interaction term* between biological sex and surgery. We can now estimate the causal effect of surgery separately for males and females in the same model. Let's see what happens:
+Once again, we do not estimate a significant causal effect of surgery on lifespan, although it is significant within the respective male and female populations. We estimate a significant causal effect of biological sex on lifespan, however, this is **not** true if nobody in the population undergoes surgery. We can also solve this problem by embedding a more precise question in our model via an *interaction term* between biological sex and surgery. We can now estimate the causal effect of surgery separately for males and females with the same model. Let's see what happens:
 
 <p align="center">
   <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
