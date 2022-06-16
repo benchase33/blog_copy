@@ -98,7 +98,7 @@ In our sample data, weight has a direct causal effect on both surgery and lifesp
 We would estimate a significant and negative causal effect of surgery on lifespan, even though none exists in the data! Remember, we created our data such that **only weight** impacts lifespan. Failing to include weight as a predictor here would incorrectly lead us to the conclusion that undergoing surgery reduces an individual’s lifespan. Now, let’s see what changes if we properly handle the confounder, weight, and include it as a predictor in the linear regression model:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
 </p>
 
 Now that we properly handled the confounder, we do not estimate a
@@ -154,33 +154,33 @@ lifespan = 75 + 25*surgery*male - 25*surgery*(1 - male)
 Our original question was to find out whether or not undergoing surgery will increase an individual’s lifespan. There are no confounders here because surgery was *randomly assigned*, so we can construct an outcome regression model with surgery as the only predictor. Let’s see what happens:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmod.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmod.png">
 </p>
 
 We would conclude that surgery does not have a significant causal effect on lifespan in the *entire population*. On average, this is true. However, this is not true for any *individual* because the surgery has equal and opposite effects for men and women, whom are evenly distributed in the population. Due to effect modification paired with our imprecise question, the causal effects canceled out! Let’s see what happens when we restrict our model to data for males; this is analogous to forming a more precise question:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
 </p>
 
 With a more precisely specified population (only males), we find a
 significant and positive causal effect of surgery on lifespan. We can see the same for a population with all females:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodfemale.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodfemale.png">
 </p>
 
 for whom surgery has a significant and negative causal effect on
 lifespan. To be clear, sex is **not** a confounder. It **should not** be controlled for in the same way as a confounder, such as by including it as a predictor in our outcome regression model. Let’s see what happens if we do that:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
 </p>
 
 Once again, we do not estimate a significant causal effect of surgery on lifespan, although it is significant within the respective male and female populations. We estimate a significant causal effect of biological sex on lifespan, however, this is **not** true if nobody in the population undergoes surgery. We can also solve this problem by embedding a more precise question in our model via an *interaction term* between biological sex and surgery. We can now estimate the causal effect of surgery separately for males and females with the same model. Let's see what happens:
 
 <p align="center">
-  <img width="750" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
+  <img width="600" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/interaction.png">
 </p>
 
 We estimate the same causal effects for males and females that we found when we ran one model for each half of the population. The estimated effect for females is the coefficient on surgery, and the estimated effect for males is the coefficient on surgery **plus** the coefficient on the interaction term. Although both methods require a more precise question, they each have pros and cons depending on your specific project.
