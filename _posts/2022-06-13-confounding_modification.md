@@ -15,7 +15,7 @@ last-updated: 6/13/2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
-<a id = 'footnote-1-ref'>People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG<sup>[1](#myfootnote1)</sup> for short. Check out the sample DAG below<sup>[2](#myfootnote2)</sup>:
+<a id = 'footnote-1-ref'></a>People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG<sup>[1](#myfootnote1)</sup> for short. Check out the sample DAG below<sup>[2](#myfootnote2)</sup>:
 
 <p align="center">
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_1.png">
@@ -60,7 +60,7 @@ There are two features in this DAG which confirm the presence of a confounder:
 1.  There is an arrow going from weight to surgery, which implies an individual’s weight has a direct causal effect on whether they undergo surgery.
 2.  There is an arrow going from weight to lifespan, which implies an individual’s weight has a direct causal effect on their lifespan.
 
-Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this<sup>[4](#myfootnote4)</sup> <sup>[5](#myfootnote5)</sup> <sup>[6](#myfootnote6)</sup>(matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
+<a id = 'footnote-2-ref'></a>Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this<sup>[4](#myfootnote4)</sup> <sup>[5](#myfootnote5)</sup> <sup>[6](#myfootnote6)</sup>(matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
 predictor in the model, we have a model with confounding and a biased estimate of the causal effect.
 
 ### Example of Confounding
@@ -205,10 +205,10 @@ features that should be understood when interpreting reported effects and doing 
 
 <a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels> <a href="#footnote-1-ref">&#8617;</a>
 
-<a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ> <a href="#footnote-3-ref">&#8617;</a>
+<a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ> <a href="#footnote-2-ref">&#8617;</a>
 
-<a name="myfootnote4">4</a>: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com> <a href="#footnote-4-ref">&#8617;</a>
+<a name="myfootnote4">4</a>: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com> <a href="#footnote-2-ref">&#8617;</a>
 
-<a name="myfootnote5">5</a>: Another resource for causal inference techniques: <https://theeffectbook.net> <a href="#footnote-5-ref">&#8617;</a>
+<a name="myfootnote5">5</a>: Another resource for causal inference techniques: <https://theeffectbook.net> <a href="#footnote-2-ref">&#8617;</a>
 
-<a name="myfootnote6">6</a>: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/> <a href="#footnote-6-ref">&#8617;</a>
+<a name="myfootnote6">6</a>: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/> <a href="#footnote-2-ref">&#8617;</a>
