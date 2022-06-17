@@ -15,7 +15,7 @@ last-updated: 6/13/2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
-People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG[^1] for short. Check out the sample DAG below[^2]:
+People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG<sup>[1](#myfootnote1)</sup> for short. Check out the sample DAG below<sup>[2](#myfootnote2)</sup>:
 
 <p align="center">
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_1.png">
@@ -31,7 +31,7 @@ This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan. In this DAG, undergoing surgery does not have a direct causal effect on an individual’s lifespan, but an *indirect* causal effect *mediated by heart health*.
 
 The existence of causal effects is often the focus of research. For
-instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression* [^3] in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
+instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression* <sup>[3](#myfootnote3)</sup> in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
 
 1.  Which predictors are used in the model.
 2.  Which data the model learns from.
@@ -60,7 +60,7 @@ There are two features in this DAG which confirm the presence of a confounder:
 1.  There is an arrow going from weight to surgery, which implies an individual’s weight has a direct causal effect on whether they undergo surgery.
 2.  There is an arrow going from weight to lifespan, which implies an individual’s weight has a direct causal effect on their lifespan.
 
-Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this[^4] [^5] [^6] (matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
+Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this<sup>[4](#myfootnote4)</sup> <sup>[5](#myfootnote5)</sup> <sup>[6](#myfootnote6)</sup>(matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
 predictor in the model, we have a model with confounding and a biased estimate of the causal effect.
 
 ### Example of Confounding
@@ -201,14 +201,14 @@ features that should be understood when interpreting reported effects and doing 
 
 **Note**: All source code written for this post is available in a Python notebook here: <https://colab.research.google.com/drive/1Aln4jJfUUQXvK8Fnp75aAMv-utTYoYKp?usp=sharing>
 
-[^1]: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: <https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html>
+<a name="myfootnote2">2</a>: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: <https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html>
 
-[^2]: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels>
+<a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels>
 
-[^3]: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ>
+<a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ>
 
-[^4]: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com>
+<a name="myfootnote4">4</a>: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com>
 
-[^5]: Another resource for causal inference techniques: <https://theeffectbook.net>
+<a name="myfootnote5">5</a>: Another resource for causal inference techniques: <https://theeffectbook.net>
 
-[^6]: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/>
+<a name="myfootnote6">6</a>: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/>
