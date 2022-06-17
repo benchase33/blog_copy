@@ -15,7 +15,7 @@ last-updated: 6/13/2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
-People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG<sup id = "footnote-1-ref" >[1](#myfootnote1)</sup> for short. Check out the sample DAG below<sup>[2](#myfootnote2)</sup>:
+<a id = 'footnote-1-ref'>People often want to know if an event causes something to happen. For instance, you might want to know if undergoing surgery will cause you to live a longer life. This is typically referred to as a *causal effect* because an event (surgery) causes something to happen (you live a longer life). Causal relationships can be represented by a *directed acyclic graph*, or DAG<sup>[1](#myfootnote1)</sup> for short. Check out the sample DAG below<sup>[2](#myfootnote2)</sup>:
 
 <p align="center">
   <img height="200" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_1.png">
@@ -203,7 +203,7 @@ features that should be understood when interpreting reported effects and doing 
 
 <a name="myfootnote1">1</a>: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: <https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html> <a href="#footnote-1-ref">&#8617;</a>
 
-<a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels> <a href="#footnote-2-ref">&#8617;</a>
+<a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels> <a href="#footnote-1-ref">&#8617;</a>
 
 <a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ> <a href="#footnote-3-ref">&#8617;</a>
 
