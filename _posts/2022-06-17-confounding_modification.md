@@ -11,7 +11,7 @@ tags:
 - econometrics
 title: Confounding Versus Effect Modification
 readtime: True
-last-updated: 6/13/2022
+last-updated: June 17, 2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
