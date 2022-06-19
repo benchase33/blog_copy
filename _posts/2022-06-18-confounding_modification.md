@@ -11,7 +11,7 @@ tags:
 - econometrics
 title: Confounding Versus Effect Modification
 readtime: True
-last-updated: June 16, 2022
+last-updated: June 18, 2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
@@ -30,8 +30,8 @@ The arrow going from surgery to lifespan says, in DAG language, that undergoing 
 This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan. In this DAG, undergoing surgery does not have a direct causal effect on an individual’s lifespan, but an *indirect* causal effect *mediated by heart health*.
 
-The existence of causal effects is often the focus of research. For
-instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression* <sup>[3](#myfootnote3)</sup> in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
+<a id = 'footnote-2-ref'></a>The existence of causal effects is often the focus of research. For
+instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression*<sup>[3](#myfootnote3)</sup> in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
 
 1.  Which predictors are used in the model.
 2.  Which data the model learns from.
@@ -60,7 +60,7 @@ There are two features in this DAG which confirm the presence of a confounder:
 1.  There is an arrow going from weight to surgery, which implies an individual’s weight has a direct causal effect on whether they undergo surgery.
 2.  There is an arrow going from weight to lifespan, which implies an individual’s weight has a direct causal effect on their lifespan.
 
-<a id = 'footnote-2-ref'></a>Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this<sup>[4](#myfootnote4)</sup> <sup>[5](#myfootnote5)</sup> <sup>[6](#myfootnote6)</sup>(matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
+<a id = 'footnote-3-ref'></a>Weight is a confounder and needs to be handled properly to estimate the causal effect of undergoing surgery on lifespan. There are many ways to do this<sup>[4](#myfootnote4)</sup> <sup>[5](#myfootnote5)</sup> <sup>[6](#myfootnote6)</sup>(matching, IP weighting, standardization, g-estimation) but a common method is to include the confounder as a predictor in a linear or logistic regression model. If the confounder is not included as a
 predictor in the model, we have a model with confounding and a biased estimate of the causal effect.
 
 ### Example of Confounding
@@ -102,7 +102,7 @@ We would estimate a significant and negative causal effect of surgery on lifespa
 </p>
 
 Now that we properly handled the confounder, we do not estimate a
-significant causal effect of surgery on lifespan, and correctly detect that weight has a significant negative causal effect on lifespan. Here, we are using a p-value of 0.05 as a cutoff for a statistically significant estimate. Failing to recognize confounding in a model can lead to finding causal effects that don’t exist, and vice-versa. This is sometimes referred to as *omitted variable bias*. 
+significant causal effect of surgery on lifespan, and correctly detect that weight has a significant and negative causal effect on lifespan. Here, we are using a p-value of 0.05 as a cutoff for a statistically significant estimate. Failing to recognize confounding in a model can lead to finding causal effects that don’t exist, not finding causal effects that do exist, or finding a causal effect in the opposite direction of the true causal effect; estimates are unreliable when a model has confounding. This is sometimes referred to as *omitted variable bias*. 
 
 ## What is Effect Modification?
 
@@ -207,8 +207,8 @@ features that should be understood when interpreting reported effects and doing 
 
 <a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ> <a href="#footnote-2-ref">&#8617;</a>
 
-<a name="myfootnote4">4</a>: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com> <a href="#footnote-2-ref">&#8617;</a>
+<a name="myfootnote4">4</a>: Check out this book for a deep dive into causal inference techniques: <https://mixtape.scunning.com> <a href="#footnote-3-ref">&#8617;</a>
 
-<a name="myfootnote5">5</a>: Another resource for causal inference techniques: <https://theeffectbook.net> <a href="#footnote-2-ref">&#8617;</a>
+<a name="myfootnote5">5</a>: Another resource for causal inference techniques: <https://theeffectbook.net> <a href="#footnote-3-ref">&#8617;</a>
 
-<a name="myfootnote6">6</a>: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/> <a href="#footnote-2-ref">&#8617;</a>
+<a name="myfootnote6">6</a>: A more mathematical resource for causal inference techniques: <https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/> <a href="#footnote-3-ref">&#8617;</a>
