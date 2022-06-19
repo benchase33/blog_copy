@@ -126,7 +126,7 @@ threatens to invalidate your model and estimated causal effect. Instead, it can 
 Unfortunately, this question is too vague to properly estimate causal effects. Instead, we must be more precise. For instance, we could ask:
 
 -   Does undergoing surgery have a causal effect on lifespan **for
-    men**?
+    males**?
 
 This is an improvement because our new question better specifies a
 population (there is no end to how precise a causal question can be, but we’ll stop here for now). Let’s walk through an example to see how effect modification can cause problems.
@@ -157,7 +157,7 @@ Our original question was to find out whether or not undergoing surgery will inc
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmod.png">
 </p>
 
-We would conclude that surgery does not have a significant causal effect on lifespan in the *entire population*. On average, this is true. However, this is not true for any *individual* because the surgery has equal and opposite effects for men and women, whom are evenly distributed in the population. Due to effect modification paired with our imprecise question, the causal effects canceled out! Let’s see what happens when we restrict our model to data for males; this is analogous to forming a more precise question:
+We would conclude that surgery does not have a significant causal effect on lifespan in the *entire population*. On average, this is true. However, this is not true for any *individual* because the surgery has equal and opposite effects for males and females, whom are evenly distributed in the population. Due to effect modification paired with our imprecise question, the causal effects canceled out! Let’s see what happens when we restrict our model to data for males; this is analogous to forming a more precise question:
 
 <p align="center">
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
