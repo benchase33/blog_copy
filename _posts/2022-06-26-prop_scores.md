@@ -109,6 +109,7 @@ It is important to understand how to interpret effects estimated after applying 
 
 <p align="center">
 <img src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ages.png">
+</p>
 
 Our matching process removed all subjects below the age of 40 and above the age of 60. Although our original population included subjects between the ages of 20 and 80, our conclusions would **only** pertain to people between ages 40 and 60. In general, new populations of matched pairs will have many differences (e.g., age, height, weight, race) and it is important these differences are included in reported conclusions. 
 
