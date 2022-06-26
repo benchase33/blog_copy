@@ -9,7 +9,7 @@ tags:
 - causal inference
 - econometrics
 readtime: True
-last-updated: June 18, 2022
+last-updated: June 26, 2022
 title: Propensity Score Matching
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
@@ -17,7 +17,7 @@ image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag
 A PhD student collects some data about people’s weight from a hospital database. Some of the people were given an experimental drug, and the rest of the people were not given any medication. The student wants to know whether the experimental drug has a causal effect on people’s weight. The student does not know how the hospital determined which patients received the drug. In this example, confounding is going to be a serious concern because there are likely factors that influenced both the treatment assignment and an individual’s weight. Check out a hypothetical DAG below:
 
 <p align="center">
-<img height="150" src="./assets/dag_1.png">
+<img height="150" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/dag_1.png">
 </p>
 
 Here, age is a common cause of both treatment assignment and weight, and needs to be properly handled to estimate the causal effect of the treatment on an individual's weight. See our <a src = 'https://unbiaseddatablog.github.io/2022-06-18-confounding_modification/'> previous post</a> that walks through confounding and DAGs if this sounds unfamiliar. If all confounders are not properly handled, all reported estimates will be biased (i.e, wrong). What should the PhD student do? One technique that works well in a scenario like this is *propensity score matching*. Let’s break that down into two parts, and then we’ll walk through an example. 
@@ -56,7 +56,7 @@ weight = 75 + age*2
 The data we created matches the hypothetical DAG we introduced above. Let's see what happens if we naively run a linear regression to estimate the causal effect of the experimental drug on weight, without worrying about age:
 
 <p align="center">
-<img width="700" src="./assets/confounding.png">
+<img width="700" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/confounding.png">
 </p>
 
 We would estimate a significant and positive causal effect of the experimental drug on weight, even though none exists in the data! Let's see how propensity score matching can eliminate this bias.
@@ -66,7 +66,7 @@ We would estimate a significant and positive causal effect of the experimental d
 <a id = 'footnote-1-ref'></a>The first step is to estimate the probability each individual is treated using a logistic regression model<sup>[2](#myfootnote1)</sup> (i.e., propensity scores). Here, we'll include the confounder we are worried about, age, as a predictor in the model. The propensity score for each individual will represent the probability that individual receives treatment given their age. These probabilities are plotted below:
 
 <p align="center">
-<img height="250" src="./assets/probabilities.png">
+<img height="250" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/probabilities.png">
 </p>
 
 That's all we need; we have our propensity scores. 
@@ -82,7 +82,7 @@ Visually, you can think of matching as taking the section of the population with
 For the sake of this example, we'll use a threshold of 0.0003. Let's see what happens when we re-run the original linear regression model, but only using the data for our matched population:
 
 <p align="center">
-<img width="700" src="./assets/noconfounding.png">
+<img width="700" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/noconfounding.png">
 </p>
 
 The confounding is gone and we no longer estimate a significant causal effect of the experimental drug on weight! Here, we use a p-value cutoff of 0.05 to classify significant estimates. 
@@ -92,13 +92,13 @@ The confounding is gone and we no longer estimate a significant causal effect of
 How did that work? In our new population of matched pairs, age does not have a causal effect on treatment. The DAG for our new population looks like this:
 
 <p align="center">
-<img height='150' src="./assets/dag_2.png">
+<img height='150' src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/dag_2.png">
 </p>
 
 We can see evidence of this by running a linear regression model to estimate the causal effect of age on weight in the new population:
 
 <p align="center">
-<img width='750' src="./assets/newpopindependence.png">
+<img width='750' src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/newpopindependence.png">
 </p>
 
 <a id = 'footnote-2-ref'></a>By matching our treated subjects to untreated subjects based on their propensity scores, we eliminated age as a confounder. The fact that the treated and untreated subjects in our new populations are sufficiently similar such that the treatment does not depend on age is sometimes called *marginal exchangeability*<sup>[2](#myfootnote2)</sup>.
@@ -108,7 +108,7 @@ We can see evidence of this by running a linear regression model to estimate the
 It is important to understand how to interpret effects estimated after applying propensity score matching. The estimated causal effect is **only true for the new population** of matched pairs, which often has different characteristics than the original population. For instance, let's look at the age distributions of our original and new populations:
 
 <p align="center">
-<img src="./assets/ages.png">
+<img src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ages.png">
 
 Our matching process removed all subjects below the age of 40 and above the age of 60. Although our original population included subjects between the ages of 20 and 80, our conclusions would **only** pertain to people between ages 40 and 60. In general, new populations of matched pairs will have many differences (e.g., age, height, weight, race) and it is important these differences are included in reported conclusions. 
 
@@ -121,9 +121,9 @@ In short, propensity score matching yields conclusions that typically hold for a
 The threshold of 0.0003 we used in our example was arbitrary. We could have used 0.00035 or 0.00047. This is a good place for sensitivity analysis (e.g., if your results only hold for one threshold, they aren't that convincing) but we can also use it to better understand how propensity score matching works under the hood. Let's repeat our example analysis with 100 different threshold values and see how our results change:
 
 <p align="center">
-<img width='32%' src="./assets/pvalues.png">
-<img width = 32% src = './assets/size.png'>
-<img width = 33% src = './assets/ageweight.png'>
+<img width='32%' src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/pvalues.png">
+<img width = 32% src = 'https://benchase33.github.io/testing.github.io/assets/prop_scores_img/size.png'>
+<img width = 33% src = 'https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ageweight.png'>
 </p>
 
 The figure on the left shows how the significance of the estimated effect of the treatment on weight changes as the matching threshold increases. For lower thresholds (i.e., stricter matching), the treated and untreated are sufficiently similar and we estimate an insigificant causal effect of the treatment on weight. For higher thresholds (i.e., looser matching), the treated and untreated are not similar enough and confounding prevails and we estimate a significant causal effect of the treatment on weight. This can also be seen in the figure on the right, which shows that strict matching eliminates the causal effect of age on weight (and confounding) while looser matching fails to do so. The figure in the middle highlights the tradeoff we make by lowering the matching threshold. Stricter matching better eliminates confounding, but it typically leads to a smaller sample size. 
