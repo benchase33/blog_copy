@@ -63,7 +63,7 @@ We would estimate a significant and positive causal effect of the experimental d
 
 ## Estimating Propensity Scores
 
-<a id = 'footnote-1-ref'></a>The first step is to estimate the probability each individual is treated using a logistic regression model<sup>[2](#myfootnote1)</sup> (i.e., propensity scores). Here, we'll include the confounder we are worried about, age, as a predictor in the model. The propensity score for each individual will represent the probability that individual receives treatment given their age. These probabilities are plotted below:
+<a id = 'footnote-1-ref'></a>The first step is to estimate the probability each individual is treated using a logistic regression model<sup>[1](#myfootnote1)</sup> (i.e., propensity scores). Here, we'll include the confounder we are worried about, age, as a predictor in the model. The propensity score for each individual will represent the probability that individual receives treatment given their age. These probabilities are plotted below:
 
 <p align="center">
 <img height="250" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/probabilities.png">
@@ -123,8 +123,8 @@ The threshold of 0.0003 we used in our example was arbitrary. We could have used
 
 <p align="center">
 <img width='32%' src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/pvalues.png">
-<img width = 32% src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/size.png">
-<img width = 33% src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ageweight.png">
+<img width = '32%' src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/size.png">
+<img width = '33%' src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ageweight.png">
 </p>
 
 The figure on the left shows how the significance of the estimated effect of the treatment on weight changes as the matching threshold increases. For lower thresholds (i.e., stricter matching), the treated and untreated are sufficiently similar and we estimate an insigificant causal effect of the treatment on weight. For higher thresholds (i.e., looser matching), the treated and untreated are not similar enough and confounding prevails and we estimate a significant causal effect of the treatment on weight. This can also be seen in the figure on the right, which shows that strict matching eliminates the causal effect of age on weight (and confounding) while looser matching fails to do so. The figure in the middle highlights the tradeoff we make by lowering the matching threshold. Stricter matching better eliminates confounding, but it typically leads to a smaller sample size. 
@@ -133,7 +133,7 @@ The best threshold is the smallest threshold that doesn't create an unusable sam
 
 # Summary
 
-<a id = 'footnote-3-ref'></a>Propensity score matching is one technique that can be used to combat confounding and is easily broken down into three steps<sup>[2](#myfootnote3)</sup>:
+<a id = 'footnote-3-ref'></a>Propensity score matching is one technique that can be used to combat confounding and is easily broken down into three steps<sup>[3](#myfootnote3)</sup>:
 1. Run a logistic regression model to estimate the probability each subject receives treatment given a set of confounders.
 2. Divide your subjects into treated and untreated groups, and use propensity scores to created a new population of matched pairs.
 3. Conduct any further analysis only using data from the new population.
