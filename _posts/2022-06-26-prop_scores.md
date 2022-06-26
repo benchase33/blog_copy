@@ -123,8 +123,8 @@ The threshold of 0.0003 we used in our example was arbitrary. We could have used
 
 <p align="center">
 <img width='32%' src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/pvalues.png">
-<img width = 32% src = 'https://benchase33.github.io/testing.github.io/assets/prop_scores_img/size.png'>
-<img width = 33% src = 'https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ageweight.png'>
+<img width = 32% src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/size.png">
+<img width = 33% src = "https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ageweight.png">
 </p>
 
 The figure on the left shows how the significance of the estimated effect of the treatment on weight changes as the matching threshold increases. For lower thresholds (i.e., stricter matching), the treated and untreated are sufficiently similar and we estimate an insigificant causal effect of the treatment on weight. For higher thresholds (i.e., looser matching), the treated and untreated are not similar enough and confounding prevails and we estimate a significant causal effect of the treatment on weight. This can also be seen in the figure on the right, which shows that strict matching eliminates the causal effect of age on weight (and confounding) while looser matching fails to do so. The figure in the middle highlights the tradeoff we make by lowering the matching threshold. Stricter matching better eliminates confounding, but it typically leads to a smaller sample size. 
