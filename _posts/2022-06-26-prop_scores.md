@@ -26,7 +26,7 @@ This DAG says age is a *common cause* of both treatment assignment and weight; t
 
 I think about matching as two distinct steps. First, we separate our data into treated subjects and untreated subjects. In our example, this would be patients who received the experimental drug and patients who did not receive the drug. Next, for each treated subject, we find at least one untreated subject that is *similar* to the treated subject. If we cannot find a similar untreated subject for a given treated subject, we remove the treated subject from our analysis. Untreated subjects that don't get matched to treated subjects also get removed. When we’re done, we estimate any causal effects using only the treated subjects and their matches. 
 
-This new population of *matched pairs* will be similar enough that confounders are no longer a threat to our estimates. In our example, if all the treated patients were over the age of 65, untreated patients under the age of 50 might not make it into our analysis.
+This new population of *matched pairs* will be similar enough that confounders are no longer a threat to our estimates. To drive this point home, think about the following: if all subjects are 50 years old, age can't possibly be a confounder. The same might be true if all subjects were either 49 or 50, and so on.
 
 We use *propensity scores* to determine if two subjects are similar during the matching process.
 
@@ -75,7 +75,7 @@ That's all we need; we have our propensity scores.
 
 ## Matching - Creating a New Population
 
-Visually, you can think of matching as taking the section of the population with overlapping propensity scores, which is the overlapping red and blue dots in the figure above. We are restricting our analysis to the section of the population in which age is not a confounder. There is nothing fancy here; the logic can be implemented in an iterative loop:
+Visually, you can think of matching as taking the section of the population with overlapping propensity scores, which is the overlapping red and blue dots in the figure above. We are restricting our analysis to the section of the population in which age is not a confounder (i.e., similar enough between the treated and untreated subjects). There is nothing fancy here; the logic can be implemented in an iterative loop:
 1. For each treated subject, find every untreated subject with a propensity score within some threshold (e.g., 0.0003).
 2. If there is at least one match, add the treated subject and all matches to the new population.
 3. If there are no matches, **do not** add the treated subject to the new population.
@@ -140,7 +140,7 @@ The figure in the middle highlights the tradeoff we make by lowering the matchin
 2. Divide your subjects into treated and untreated groups, and use propensity scores to created a new population of matched pairs.
 3. Conduct any further analysis only using data from the new population.
 
-There are two important considerations when applying propensity score matching and interpreting the results:
+This method works by creating a subset of the original population in which the treated and untreated subjects are sufficiently similar across all confounders. There are two important considerations when applying propensity score matching and interpreting the results:
 1. The sample size of your new population of matched pairs.
 2. The demographics of your new population and how they differ from your original data. 
 
