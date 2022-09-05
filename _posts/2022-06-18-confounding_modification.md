@@ -136,7 +136,7 @@ population (there is no end to how precise a causal question can be, but we’ll
 Once again, let’s look at some sample data. We’ll start with a randomly assigned surgery:
 
 ``` py
-surgery = np.array([random.randint(0, 2) for _ in range(1_000)])
+surgery = np.array([random.randint(0, 1) for _ in range(1_000)])
 ```
 
 Next, we’ll split the data into two groups, males and females:
@@ -203,7 +203,7 @@ features that should be understood when interpreting reported effects and doing 
 
 <a name="myfootnote1">1</a>: Directed Acyclic Graphs (DAGs) can be quite complicated when used in practice. You can read more about them and find some additional resources here: <https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html> <a href="#footnote-1-ref">&#8617;</a>
 
-<a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post:  <https://github.com/ijmbarr/causalgraphicalmodels> <a href="#footnote-1-ref">&#8617;</a>
+<a name="myfootnote2">2</a>: I strongly recommend the following Python package for drawing and working with DAGs; it’s the one I used in this post: <https://github.com/ijmbarr/causalgraphicalmodels> <a href="#footnote-1-ref">&#8617;</a>
 
 <a name="myfootnote3">3</a>: Check out this book for a Bayesian approach to linear and logistic regression models: <https://www.amazon.com/dp/B09RW8BYQR/ref=cm_sw_em_r_mt_dp_EJDSGXMTW6J9Z2TTZASQ> <a href="#footnote-2-ref">&#8617;</a>
 
