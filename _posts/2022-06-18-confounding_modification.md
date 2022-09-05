@@ -11,7 +11,7 @@ tags:
 - econometrics
 title: Confounding Versus Effect Modification
 readtime: True
-last-updated: June 18, 2022
+last-updated: September 5, 2022
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
@@ -30,14 +30,13 @@ The arrow going from surgery to lifespan says, in DAG language, that undergoing 
 This DAG says that undergoing surgery has a direct causal effect on
 heart health, and heart health has a direct causal effect on lifespan. In this DAG, undergoing surgery does not have a direct causal effect on an individual’s lifespan, but an *indirect* causal effect *mediated by heart health*.
 
-<a id = 'footnote-2-ref'></a>The existence of causal effects is often the focus of research. For
+<a id = 'footnote-2-ref'></a>The existence of causal effects is often the focus of scientific research. For
 instance, scientists likely wanted to know whether or not the COVID-19 vaccine had a causal effect (direct or indirect) on patient outcomes. Questions like these are typically answered using *outcome regression*<sup>[3](#myfootnote3)</sup> in which an outcome (e.g., lifespan) is modeled as a function of predictors (e.g., vaccine status, obesity, age, etc.). Causal effects estimated by regression models are heavily dependent on two things:
 
 1.  Which predictors are used in the model.
 2.  Which data the model learns from.
 
-If you miss on either point when conducting your analysis, your
-conclusions will likely be wrong. These dependencies are the reason that recognizing the difference between *confounding* and *effect modification* is crucial to properly estimate causal effects.
+If you miss on either point when conducting your analysis, your conclusions will likely be wrong. These dependencies are the reason that recognizing the difference between *confounding* and *effect modification* is crucial to properly estimate causal effects and recognize flaws when reading others' work.
 
 ## What is Confounding?
 
@@ -76,14 +75,13 @@ We’ll start with some random data that captures individuals’ weights in kilo
 weight = stats.norm.rvs(loc = 100, scale = 20, size = 1_000)
 ```
 
-The code above will randomly draw 1,000 values from a normal distribution with a mean of 100 and a standard deviation of 20. This will create weight data which generally falls between 40 kilograms and 160 kilograms, with a higher concentration of observations around 100 kilograms. Next, we’ll create surgery data such that only people who weigh over 100 kilograms receive surgery:
+The code above will randomly draw 1,000 values from a normal distribution with a mean of 100 and a standard deviation of 20. This will create weight data which generally falls between 40 kilograms and 160 kilograms, with a higher concentration of observations centered around 100 kilograms. Next, we’ll create surgery data such that only people who weigh over 100 kilograms receive surgery:
 
 ``` py
 surgery = weight > 100
 ```
 
-Finally, we’ll create lifespan data such that heavier people have
-shorter lifespans:
+Finally, we’ll create lifespan data such that heavier people have shorter lifespans:
 
 ``` py
 lifespan = 100 - weight/10
@@ -101,8 +99,7 @@ We would estimate a significant and negative causal effect of surgery on lifespa
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noconfounding.png">
 </p>
 
-Now that we properly handled the confounder, we do not estimate a
-significant causal effect of surgery on lifespan, and correctly detect that weight has a significant and negative causal effect on lifespan. Here, we are using a p-value of 0.05 as a cutoff for a statistically significant estimate. Failing to recognize confounding in a model can lead to finding causal effects that don’t exist, not finding causal effects that do exist, or finding a causal effect in the opposite direction of the true causal effect; estimates are unreliable when a model has confounding. This is sometimes referred to as *omitted variable bias*. 
+Now that we properly handled the confounder, we do not estimate a significant causal effect of surgery on lifespan, and correctly detect that weight has a significant and negative causal effect on lifespan. Here, we are using a p-value of 0.05 as a cutoff for a statistically significant estimate. Failing to recognize confounding in a model can lead to finding causal effects that don’t exist, not finding causal effects that do exist, or finding a causal effect in the opposite direction of the true causal effect; estimates are unreliable when a model has confounding. This is sometimes referred to as *omitted variable bias*. 
 
 ## What is Effect Modification?
 
@@ -118,18 +115,15 @@ Similar to direct and indirect causal effects, there can be direct and indirect 
   <img height="300" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_5.png">
 </p>
 
-Unlike confounding, effect modification is not a boogeyman that
-threatens to invalidate your model and estimated causal effect. Instead, it can cripple the conclusion of an *imprecise question*. Think about our original question:
+Unlike confounding, effect modification is not a boogeyman that threatens to invalidate your model and estimated causal effect. Instead, it can cripple the conclusion of an *imprecise question*. Think about our original question:
 
 -   Does undergoing surgery have a causal effect on lifespan?
 
 Unfortunately, this question is too vague to properly estimate causal effects. Instead, we must be more precise. For instance, we could ask:
 
--   Does undergoing surgery have a causal effect on lifespan **for
-    males**?
+-   Does undergoing surgery have a causal effect on lifespan **for males**?
 
-This is an improvement because our new question better specifies a
-population (there is no end to how precise a causal question can be, but we’ll stop here for now). Let’s walk through an example to see how effect modification can cause problems.
+This is an improvement because our new question better specifies a population (there is no end to how precise a causal question can be, but we’ll stop here for now). Let’s walk through an example to see how effect modification can cause problems.
 
 ### Example of Effect Modification
 
@@ -163,15 +157,13 @@ We would conclude that surgery does not have a significant causal effect on life
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodmale.png">
 </p>
 
-With a more precisely specified population (only males), we find a
-significant and positive causal effect of surgery on lifespan. We can see the same for a population with all females:
+With a more precisely specified population (only males), we find a significant and positive causal effect of surgery on lifespan. We can see the same for a population with all females:
 
 <p align="center">
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/noeffectmodfemale.png">
 </p>
 
-for whom surgery has a significant and negative causal effect on
-lifespan. To be clear, sex is **not** a confounder. It **should not** be controlled for in the same way as a confounder, such as by including it as a predictor in our outcome regression model. Let’s see what happens if we do that:
+for whom surgery has a significant and negative causal effect on lifespan. To be clear, biological sex is **not** a confounder. It **should not** be controlled for in the same way as a confounder, such as by including it as a predictor in our outcome regression model. Let’s see what happens if we do that:
 
 <p align="center">
   <img width="700" src="https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/effectmodbad.png">
@@ -193,11 +185,9 @@ I think of effect modification as a neutral characteristic of data which is asso
 questions:
 
 1.  Do email reminders make people save more money?
-2.  Does a daily email reminder sent at 10:00PM for 3 weeks, make
-    married women, aged 25-34, living in New York City, significantly increase their contributions to their IRA?
+2.  Does a daily email reminder sent at 10:00PM for 3 weeks, make married women, aged 25-34, living in New York City, significantly increase their contributions to their IRA?
 
-Confounding and effect modification are two important and distinct
-features that should be understood when interpreting reported effects and doing your own research.
+Confounding and effect modification are two important and distinct features that should be understood when interpreting reported effects and doing your own research.
 
 **Note**: All source code written for this post is available in a Python notebook here: <https://colab.research.google.com/drive/1Aln4jJfUUQXvK8Fnp75aAMv-utTYoYKp?usp=sharing>
 
