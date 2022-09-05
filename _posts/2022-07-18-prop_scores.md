@@ -5,16 +5,17 @@ output:
     preserve_yaml: true
     variant: markdown_github
 subtitle: One Tool to Combat Confounding
+author: benjamin_chase
 tags:
 - causal inference
 - econometrics
 readtime: True
-last-updated: June 26, 2022
+last-updated: September 5, 2022
 title: Propensity Score Matching
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
-A PhD student collects some data about patients' weight from a hospital database. Some of the patients were given an experimental drug, and the rest were not given any medication. The student wants to know whether the experimental drug has a *causal effect* on patients' weight, however, how the hospital determined which patients received the drug is an unknown. In this example, *confounding* is going to be a serious concern because there are likely factors that influenced both the treatment assignment and patients' weight. Check out the hypothetical DAG (directed acyclic graph) below:
+A PhD student collects some data about patients' weight from a hospital database. Some of the patients were given an experimental drug, and the rest were not given any medication. The student wants to know whether the experimental drug has a *causal effect* on patients' weight, however, how the hospital determined which patients received the drug is unknown. In this example, *confounding* is going to be a serious concern because there are likely factors that influenced both the treatment assignment and patients' weight. Check out the hypothetical DAG (directed acyclic graph) below:
 
 <p align="center">
 <img height="150" src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/dag_1.png">
@@ -24,15 +25,15 @@ This DAG says age is a *common cause* of both treatment assignment and weight; t
 
 # Matching
 
-I think about matching as two distinct steps. First, we separate our data into treated subjects and untreated subjects. In our example, this would be patients who received the experimental drug and patients who did not receive the drug. Next, for each treated subject, we find at least one untreated subject that is *similar* to the treated subject. If we cannot find a similar untreated subject for a given treated subject, we remove the treated subject from our analysis. Untreated subjects that don't get matched to treated subjects also get removed. When we’re done, we estimate any causal effects using only the treated subjects and their matches. 
+I think about matching as two distinct steps. First, we separate our data into treated subjects and untreated subjects. In our example, this would be patients who received the experimental drug and patients who did not receive the drug. Second, for each treated subject, we find at least one untreated subject that is *similar* to the treated subject. If we cannot find a similar untreated subject for a given treated subject, we remove the treated subject from our analysis. Untreated subjects that don't get matched to treated subjects also get removed. When we’re done, we estimate any causal effects using only the treated subjects and their matches. 
 
-This new population of *matched pairs* will be similar enough that confounders are no longer a threat to our estimates. To drive this point home, think about the following: if all subjects are 50 years old, age can't possibly be a confounder. The same might be true if all subjects were either 49 or 50, and so on.
+This new population of *matched pairs* will be similar enough that confounders are no longer a threat to our estimates. To drive this point home, think about the following: if all subjects are 50 years old, age can't possibly be a confounder. We don't necessarily need similarity this extreme, but the closer we can get, the more accurate our estimates of the causal effect will be.
 
 We use *propensity scores* to determine if two subjects are similar during the matching process.
 
 # Propensity Scores
 
-<a id = 'footnote-1-ref'></a>I think of a propensity score as a probability a subject was treated given a set of confounders. This probability can be estimated using a logistic regression model, although there are more robust techniques<sup>[1](#myfootnote1)</sup> . We say two subjects are similar if the difference between their propensity scores is below some threshold. This threshold generally depends on your sample size; in an ideal world with infinite data, we would only use exact matches. I think a good rule of thumb is to have the smallest threshold possible without creating a dubious sample size (e.g., 10 subjects)
+<a id = 'footnote-1-ref'></a>I think of a propensity score as a probability a subject was treated given a set of confounders. This probability can be estimated using a logistic regression model, although there are more robust techniques<sup>[1](#myfootnote1)</sup> . We say two subjects are similar if the difference between their propensity scores is below some threshold. This threshold generally depends on your sample size; in an ideal world with infinite data, we would only use exact matches. I think a good rule of thumb is to have the smallest threshold possible without creating a dubious sample size (e.g., 10 subjects).
 
 Matching is only one way we can use propensity scores. There are other techniques, such as *stratification*, which have their own pros and cons.
 
@@ -43,7 +44,7 @@ The best way to understand how propensity score matching works is to see it in a
 ``` py
 age = stats.norm.rvs(loc = 50, scale = 10, size = 1_000)
 ```
-The code above will generate a distribution of ages which is concentrated around 50, and generally between 20 and 80. Next, we'll create some treatment data that depends on age. We'll add some randomness here, mostly because a logistic regression model will have a hard time if age is a perfect predictor of the treatment:
+The code above will generate a distribution of ages which is concentrated around 50, and mostly falls between 20 and 80. Next, we'll create some treatment data that depends on age. We'll add some randomness here because a standard logistic regression model will struggle if age is a perfect predictor of the treatment variable:
 
 ``` py
 drug = (age > (50 + stats.norm.rvs(loc = 0, scale = 5, size = 1_000)
@@ -75,7 +76,7 @@ That's all we need; we have our propensity scores.
 
 ## Matching - Creating a New Population
 
-Visually, you can think of matching as taking the section of the population with overlapping propensity scores, which is the overlapping red and blue dots in the figure above. We are restricting our analysis to the section of the population in which age is not a confounder (i.e., similar enough between the treated and untreated subjects). There is nothing fancy here; the logic can be implemented in an iterative loop:
+Visually, you can think of matching as taking the section of the population with overlapping propensity scores, which is the overlapping red and blue dots in the figure above. We are restricting our analysis to the section of the population in which age is not a confounder (i.e., subjects in the treated and untreated groups are similar enough that they can't be classified by their age). There is nothing fancy here; the logic can be implemented in an iterative loop:
 1. For each treated subject, find every untreated subject with a propensity score within some threshold (e.g., 0.0003).
 2. If there is at least one match, add the treated subject and all matches to the new population.
 3. If there are no matches, **do not** add the treated subject to the new population.
@@ -113,11 +114,11 @@ It is important to understand how to interpret effects estimated after applying 
 <img src="https://benchase33.github.io/testing.github.io/assets/prop_scores_img/ages.png">
 </p>
 
-Our matching process removed all subjects below the age of 40 and above the age of 60. Although our original population included subjects between the ages of 20 and 80, our conclusions would **only** pertain to people between ages 40 and 60. In general, new populations of matched pairs will have many differences (e.g., age, height, weight, race) and it is important these differences are included in reported conclusions. 
+Our matching process removed all subjects below the age of 40 and above the age of 60. Although our original population included subjects between the ages of 20 and 80, our conclusions would **only** pertain to people between ages 40 and 60. In general, new populations of matched pairs will have many differences (e.g., age, height, weight, race) and it is important these differences are included in reported conclusions. If the characteristics of the population didn't change, there would have been little need for matching in the first place.
 
-In our example, we matched untreated subjects to treated subjects. This created a new population which was similar to the treated population. We could have also matched treated subjects to untreated subjects, which would create a new population similar to the untreated population. This is an important distinction because, in general, the treated and untreated populations will be different. If, for instance, treated people tend to be taller and untreated people tend to be heavier, the population for which your conclusion holds will differ depending on which direction you match. This decision typically depends on the purpose of your research project.
+In our example, we matched untreated subjects to treated subjects. This created a new population similar to the treated population. We could have also matched treated subjects to untreated subjects, which would create a new population similar to the untreated population. This is an important distinction because, in general, the treated and untreated populations will be different. If, for instance, treated people tend to be taller and untreated people tend to be heavier, the population for which your conclusion holds will differ depending on which direction you match. This decision typically depends on the purpose of your research project.
 
-In short, propensity score matching typically yields conclusions that **only hold for a subset** of your original population.
+In short, propensity score matching typically yields conclusions that **only hold for a subset** of your original population. Extending your findings to other populations is known as *external validity* or *portability* 
 
 ## Tradeoffs
 
