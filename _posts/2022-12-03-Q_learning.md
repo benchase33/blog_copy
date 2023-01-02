@@ -15,7 +15,7 @@ title: The Danger of Wide Nets & Shotgun Regressions
 image: https://benchase33.github.io/testing.github.io/assets/conf_effmod_img/dag_3.png
 ---
 
- 
+ Computers are really good at doing things
 
 
 
